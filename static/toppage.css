@@ -1,0 +1,55 @@
+/* Show it's not fixed to the top */
+body {
+    min-height: 75rem;
+    text-align: center;
+  }
+  #content{
+    width: 94%;
+    margin-top: 15px;
+    padding-left: 3%;
+  }
+  
+  table {
+    width: 80%;
+    table-layout: fixed;
+  }
+  
+  #money_list{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #money_list tr {
+     text-align: center;
+     border: 1px solid #cccccc;
+     display: block;
+     float: left;
+  }
+  #money_list tr td,
+  #money_list tr th {
+   border: 1px solid #cccccc;
+    border-left: none;
+    display: block;
+    height: 50px;
+  }
+  #money_list thead {
+    display: block;
+    float: left;
+  
+  }
+  #money_list thead tr {
+    width: 100%;
+  }
+  #money_list tbody {
+    display: block;
+    float: left;
+    width: 80%;
+  }
+  
+  #money_list tr td + td{
+    border-left: none;
+  }
+  
+  #money_list tbody td:last-child {
+    border-bottom: solid 1px #ccc;
+  }

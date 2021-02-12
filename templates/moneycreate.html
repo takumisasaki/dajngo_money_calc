@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <input type="hidden" name='human_id' value='{{ user.pk }}'>
+    <p>年度:{{ form.year }}</p>
+    <p>アルバイト先:{{ form.workplace }}</p>
+    <p>1月:{{ form.janu }}</p>
+    <p>2月:{{ form.feb }}</p>
+    <p>3月:{{ form.mar }}</p>
+    <p>4月:{{ form.apl }}</p>
+    <p>5月:{{ form.may }}</p>
+    <p>6月:{{ form.jun }}</p>
+    <p>7月:{{ form.jul }}</p>
+    <p>8月:{{ form.aug }}</p>
+    <p>9月:{{ form.sep }}</p>
+    <p>10月:{{ form.octr }}</p>
+    <p>11月:{{ form.nov }}</p>
+    <p>12月:{{ form.dec }}</p>
+    <input type="submit" value='moneycreate'>
+</form>
+{% else %}
+ログインしてください<br />
+<a href="{% url 'login' %}">ログイン</a>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load boost %}
+
+{% block customcss %}
+<link href="{% static 'toppage.css' %}" rel="stylesheet">
+{% endblock customcss %}
+{% block header %}
+<select name="year">   
+    {% for year in object_list %}
+    <option value="year">{{year.year}}</option>
+    {% endfor %}
+</select>
+{{money_month}}
+{% endblock header %}
+
+{% block content %}
+<table id="money_list">
+    <thead>
+        <tr>
+            <th class="money_company">バイト先</th>
+            <th class="money_month">1月</th>
+            <th class="money_month">2月</th>
+            <th class="money_month">3月</th>
+            <th class="money_month">4月</th>
+            <th class="money_month">5月</th>
+            <th class="money_month">6月</th>
+            <th class="money_month">7月</th>
+            <th class="money_month">8月</th>
+            <th class="money_month">9月</th>
+            <th class="money_month">10月</th>
+            <th class="money_month">11月</th>
+            <th class="money_month">12月</th>
+            <th class="money_month">年間合計</th>
+            
+        </tr>
+    </thead>
+    
+    
+    <tbody>
+        {% for item,num in object_list|zip:nums%}
+        <tr>
+            <td class="money_month"><a href="{% url 'moneyupdate' item.pk%}">{{ item.workplace }}</a></td>
+            <td class="money_month">{{ item.janu }}</td>
+            <td class="money_month">{{ item.feb }}</td>
+            <td class="money_month">{{ item.mar }}</td>
+            <td class="money_month">{{ item.apl }}</td>
+            <td class="money_month">{{ item.may }}</td>
+            <td class="money_month">{{ item.jun }}</td>
+            <td class="money_month">{{ item.jul }}</td>
+            <td class="money_month">{{ item.aug }}</td>
+            <td class="money_month">{{ item.sep }}</td>
+            <td class="money_month">{{ item.octr }}</td>
+            <td class="money_month">{{ item.nov }}</td>
+            <td class="money_month">{{ item.dec }}</td>
+            <td class="money_month">{{ num }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>月合計</td>
+            <td>{{ month1 }}</td>
+            <td>{{ month2 }}</td>
+            <td>{{ month3 }}</td>
+            <td>{{ month4 }}</td>
+            <td>{{ month5 }}</td>
+            <td>{{ month6 }}</td>
+            <td>{{ month7 }}</td>
+            <td>{{ month8 }}</td>
+            <td>{{ month9 }}</td>
+            <td>{{ month10 }}</td>
+            <td>{{ month11 }}</td>
+            <td>{{ month12 }}</td>
+            <td>{{ result }}</td>
+            
+        
+    </tbody>
+</table>
+<a href="{% url 'toppage' %}">トップページ</a>
+{% endblock content %}
