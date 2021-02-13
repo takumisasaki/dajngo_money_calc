@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="POST">{% csrf_token %}
+    {{user.username}}さんの{{ object.year }}の{{ object.workplace }}を削除しますか？
+    <input type='submit' value='削除'>
+</form>
+{% endblock content %}

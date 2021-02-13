@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import MoneyModel
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, CreateView, UpdateView
+from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 
 
@@ -84,16 +85,6 @@ def moneylistfunk(request, pk):
         'month5':month5,'month6':month6,'month7':month7,'month8':month8,'month9':month9,'month10':month10,
         'month11':month11,'month12':month12, 'result':result})
 
-def moneyupdatefunk(request, pk):
-    template_name = 'update.html'
-    model = MoneyModel
-    fields = (
-        'human_id', 'year', 'workplace',
-        'janu', 'feb', 'mar', 'apl', 'may',
-        'jun', 'jul', 'aug', 'sep', 'octr',
-        'nov', 'dec'
-    )
-
 
 def logoutfunk(request):
     logout(request)
@@ -107,7 +98,14 @@ def toppagefunk(request):
     print(money_year)
     return render(request, 'toppage.html', {'money_year':money_year, 'username':user.username})
 
+def moneyeditfunk(request, pk):
+    model = list(MoneyModel.objects.filter(pk=pk).all())
+    return render(request, 'moneyedit.html', {'model':model})
 
+class MoneyDelete(DeleteView):
+    template_name = 'moneydelete.html'
+    model = MoneyModel
+    success_url = reverse_lazy('toppage')
 
 class MoneyCreate(LoginRequiredMixin,CreateView):
     template_name = 'moneycreate.html'

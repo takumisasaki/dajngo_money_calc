@@ -20,3 +20,4 @@ class MoneyModel(models.Model):
     octr = models.IntegerField(null=True, blank=True, default=0)
     nov = models.IntegerField(null=True, blank=True, default=0)
     dec = models.IntegerField(null=True, blank=True, default=0)
+
