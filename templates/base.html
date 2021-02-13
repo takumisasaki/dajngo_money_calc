@@ -1,23 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>給料計算</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
+    <link rel="canonical" href="https://getbootstrap.jp/docs/5.0/examples/navbar-fixed/">
     {% block customcss %}
     {% endblock customcss %}
+    
 
-    <title>Hello, world!</title>
+    <!-- Bootstrap core CSS -->
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
   </head>
   <body>
-      {% block header %}
-      {% endblock header %}
-
-      {% block content %}
-      {% endblock content %}
-  </body>
-</html>
+    
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">固定ナビゲーションバー</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item active">
+              <a class="nav-link" aria-current="page" href="#">ホーム</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">リンク</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効化されたアイテム</a>
+            </li>
+          </ul>
+          <p></p><a href="{% url 'logout' %}">logout</a></p>
+        </div>
+      </div>
+    </nav><br /><br /><br />
+    {% block header %}
+    {% endblock header %}
+    
+    {% block content %}
+    <main class="container">
+        <div class="bg-light p-5 rounded">
+          <h1>ナビゲーションバーサンプル</h1>
+        </div>
+      </main>
+    </body>
+    {% endblock content %}
+    </html>
+    

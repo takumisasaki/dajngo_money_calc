@@ -1,68 +1,25 @@
 
-<!doctype html>
-<html lang="ja" >
-  <head>
-    <title>給料計算トップページ</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-  </head>
-  <body >
-    <a id="skippy" class="sr-only sr-only-focusable" href="#content">
-  <div class="container">
-    <span class="skiplink-text">Skip to main content</span>
-  </div>
-</a>
+{% extends 'base.html' %}
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-  <!-- <a class="navbar-brand" href="#">Top navbar</a> -->
-  <a class="navbar-brand" href="#">画面上のナビゲーションバー</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
-        <a class="nav-link" href="#">ホーム <span class="sr-only">（現在位置）</span></a>
-      </li>
-      <li class="nav-item">
-        <!-- <a class="nav-link" href="#">Link</a> -->
-        <a class="nav-link" href="#">リンク</a>
-      </li>
-      <li class="nav-item">
-        <!-- <a class="nav-link disabled" href="#">Disabled</a> -->
-        <a class="nav-link disabled" href="#">無効なアイテム</a>
-      </li>
-    </ul>
-</nav>
-{% load boost %}
+{% block content %}
 <main class="container">
     <div class="bg-light p-5 rounded">
       <h1>給料計算アプリ</h1>
       {% if not money_year %}
       <p><a href="{% url 'moneycreate' %}">新規登録</a>をしてください。</p>
       {% else %}
+      {{ username }}さんの
       <form action="{% url 'moneylist' user.pk %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
           <select name="year">
               {% for year in money_year %}
               <option value="{{ year }}" name='year'>{{year}}</option>
               {% endfor %}
-            </select><input type="submit"  value="表示" />
-
+            </select>年度の給料表を<input type="submit"  value="表示" />
       </form>
       <br/><br/>
       {% endif %}
     </div>
   </main>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script>
-  window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery-slim.min.js"><\/script>')
-</script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script><script src="/docs/4.5/assets/js/vendor/anchor.min.js"></script>
-<script src="/docs/4.5/assets/js/vendor/clipboard.min.js"></script>
-<script src="/docs/4.5/assets/js/vendor/bs-custom-file-input.min.js"></script>
-<script src="/docs/4.5/assets/js/src/application.js"></script>
-<script src="/docs/4.5/assets/js/src/search.js"></script>
-<script src="/docs/4.5/assets/js/src/ie-emulation-modes-warning.js"></script>
+  {% endblock content %}
   </body>
 </html>

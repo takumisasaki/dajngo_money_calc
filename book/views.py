@@ -68,19 +68,16 @@ def moneylistfunk(request, pk):
     result = [month1, month2, month3, month4, month5, month6, month7, month8,
     month9, month10, month11, month11]
     result = sum(result)
-    # print(result)
 
     month_money = [i for i in MoneyModel.objects.filter(human_id=pk, year=year).values('janu', 'feb', 'mar', 'apl', 'may',
         'jun', 'jul', 'aug', 'sep', 'octr', 'nov', 'dec')]
     print(object_list)
     nums = [[int(x) for x in range(1)] for _ in range(len(month_money))]
-    # print(month_money)
     for i in range(len(month_money)):
         sums = 0
         for j,l in month_money[i].items():
             sums += l
         nums[i] = sums 
-    # print(nums)
     counter = len(nums)
     return render(request, 'moneylist.html', {
         'nums':nums, 'counter':counter, 'object_list':object_list, 'month1':month1,'month2':month2,'month3':month3,'month4':month4,
@@ -108,7 +105,7 @@ def toppagefunk(request):
     money_year = MoneyModel.objects.filter(human_id=user.id).values_list('year', flat=True)
     money_year = list(set(money_year))
     print(money_year)
-    return render(request, 'toppage.html', {'money_year':money_year})
+    return render(request, 'toppage.html', {'money_year':money_year, 'username':user.username})
 
 
 
@@ -134,33 +131,3 @@ class MoneyUpdate(LoginRequiredMixin,UpdateView):
         'nov', 'dec'
     )
     success_url = reverse_lazy('toppage')
-
-    
-# def listfunk(request):
-#     object_list = BookModel.objects.all()
-#     return render(request, 'list.html', {'object_list':object_list})
-# class Create(CreateView):
-#     template_name = 'create.html'
-#     model = BookModel
-#     fields = ('title', 'content', 'author', 'snsimage')
-#     success_url = reverse_lazy('list')
-# def detailfunk(request, pk):
-#     object = get_object_or_404(BookModel, pk=pk)
-#     return render(request, 'detail.html', {'object':object})
-
-# def goodfunk(request, pk):
-#     object = BookModel.objects.get(pk=pk)
-#     object.good = object.good + 1
-#     object.save()
-#     return redirect('list')
-
-# def readfunk(request, pk):
-#     object = BookModel.objects.get(pk=pk)
-#     username = request.user.get_username()
-#     if username in object.readtext:
-#         return redirect('list')
-#     else:
-#         object.read = object.read + 1
-#         object.readtext = object.readtext + ' ' + username
-#         object.save()
-#         return redirect('list')
