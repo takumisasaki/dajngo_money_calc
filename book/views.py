@@ -9,7 +9,7 @@ from .models import MoneyModel
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, CreateView, UpdateView
 from django.views.generic.edit import DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 
 # Create your views here.
@@ -121,6 +121,12 @@ class MoneyCreate(LoginRequiredMixin,CreateView):
     )
     success_url = reverse_lazy('toppage')
 
+class UserUpdate(LoginRequiredMixin,UpdateView):
+    template_name = 'userupdate.html'
+    model = User
+    fields = ('username',)
+    def get_success_url(self):
+        return reverse('useredit', kwargs={'pk': self.kwargs.get('pk')})
 
 class MoneyUpdate(LoginRequiredMixin,UpdateView):
     template_name = 'moneyupdate.html'

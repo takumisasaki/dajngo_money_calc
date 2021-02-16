@@ -14,6 +14,7 @@
             <li class="list-group-item">名前: {{item.username}}</li>
             <li class="list-group-item">作成日時: {{item.date_joined}}</li>
         </ul>
+        <a href="{% url 'userupdate' item.pk %}">名前の変更</a>
     </main>
 </body>
 {% endfor %}

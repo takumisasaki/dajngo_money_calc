@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block customcss %}
+<link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock customcss %}
+
+{% block content %}
+<body class='human_detail'>
+    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <input type="hidden" name='human_id' value='{{ user.pk }}'>
+        <p>名前:{{ form.username }}</p>
+        <input type="submit" value='userupdate'>
+    </form>
+</body>
+{% endblock content %}
