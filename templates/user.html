@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block customcss %}
+<link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock customcss %}
+
+{% block content %}
+{% for item in user %}
+<body class='human_detail'>
+    <main>
+        <h1>{{ item.username }}さんの情報</h1>
+        <ul class="list-group">
+            <li class="list-group-item">名前: {{item.username}}</li>
+            <li class="list-group-item">作成日時: {{item.date_joined}}</li>
+        </ul>
+    </main>
+</body>
+{% endfor %}
+{% endblock content %}

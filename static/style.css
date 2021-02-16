@@ -43,4 +43,6 @@ body {
   border-top-right-radius: 0;
 }
 
-
+.human_detail{
+  display: inline-block;
+}

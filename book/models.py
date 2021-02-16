@@ -2,8 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
-
 class MoneyModel(models.Model):
     human_id = models.IntegerField()
     year = models.CharField(max_length=10)

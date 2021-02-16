@@ -6,6 +6,9 @@
 {% endblock customcss %}
 
 {% block content %}
+{% for i in year %}
+{{ i }}
+{% endfor %}
 <table id="money_list">
     <thead>
         <tr>
@@ -46,10 +49,10 @@
         </tr>
     </tbody>
 </table>
-<button type="button" class="btn btn-danger"><a href="{% url 'moneyupdate' item.pk %}">編集</a></button>
 <form action="" method="POST">{% csrf_token %}    
-    <a href="{% url 'moneydelete' item.pk %}">削除</a>
+    <a href="{% url 'moneyupdate' item.pk %}">編集</a>
 </form>
+<button type="button" class="btn btn-danger"><a href="{% url 'moneydelete' item.pk %}">削除</a></button>
 {% endfor %}
   
 {% endblock content %}

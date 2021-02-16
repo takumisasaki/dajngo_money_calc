@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
+from django.utils.formats import date_format
 from django.db import IntegrityError
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
@@ -93,6 +94,7 @@ def logoutfunk(request):
 @login_required
 def toppagefunk(request):
     user = request.user
+    # time = request.user.objects.date_joined
     money_year = MoneyModel.objects.filter(human_id=user.id).values_list('year', flat=True)
     money_year = list(set(money_year))
     print(money_year)
@@ -100,12 +102,13 @@ def toppagefunk(request):
 
 def moneyeditfunk(request, pk):
     model = list(MoneyModel.objects.filter(pk=pk).all())
-    return render(request, 'moneyedit.html', {'model':model})
+    year = MoneyModel.objects.filter(pk=pk).values_list('year', flat=True)
+    return render(request, 'moneyedit.html', {'model':model, 'year':year})
 
-class MoneyDelete(DeleteView):
-    template_name = 'moneydelete.html'
-    model = MoneyModel
-    success_url = reverse_lazy('toppage')
+def usereditfunk(request, pk):
+    user = User.objects.filter(pk=pk).all()
+    return render(request, 'user.html', {'user':user})
+
 
 class MoneyCreate(LoginRequiredMixin,CreateView):
     template_name = 'moneycreate.html'
@@ -128,4 +131,9 @@ class MoneyUpdate(LoginRequiredMixin,UpdateView):
         'jun', 'jul', 'aug', 'sep', 'octr',
         'nov', 'dec'
     )
+    success_url = reverse_lazy('toppage')
+
+class MoneyDelete(DeleteView):
+    template_name = 'moneydelete.html'
+    model = MoneyModel
     success_url = reverse_lazy('toppage')
