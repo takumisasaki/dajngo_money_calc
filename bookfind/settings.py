@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'book',
     'django_boost',
-    'django_filters',
 ]
 
 MIDDLEWARE = [

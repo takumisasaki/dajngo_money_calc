@@ -19,10 +19,10 @@ def signupfunk(request):
         password = request.POST['password']
         try:
             user = User.objects.create_user(username, '', password)
-            return render(request, 'login.html', {'message':'ログインしました'})
+            return redirect('login')
         except IntegrityError:
             return render(request, 'signup.html', {'error':'このユーザはすでに登録されています'})
-    return render(request, 'signup.html')
+    return render(request, 'login.html')
 
 
 def loginfunk(request):
@@ -68,7 +68,7 @@ def moneylistfunk(request, pk):
     month12 = MoneyModel.objects.filter(human_id=pk, year=year).values_list('dec', flat=True)
     month12 = (sum(month12))
     result = [month1, month2, month3, month4, month5, month6, month7, month8,
-    month9, month10, month11, month11]
+    month9, month10, month11, month12]
     result = sum(result)
 
     month_money = [i for i in MoneyModel.objects.filter(human_id=pk, year=year).values('janu', 'feb', 'mar', 'apl', 'may',
@@ -84,7 +84,7 @@ def moneylistfunk(request, pk):
     return render(request, 'moneylist.html', {
         'nums':nums, 'counter':counter, 'object_list':object_list, 'month1':month1,'month2':month2,'month3':month3,'month4':month4,
         'month5':month5,'month6':month6,'month7':month7,'month8':month8,'month9':month9,'month10':month10,
-        'month11':month11,'month12':month12, 'result':result})
+        'month11':month11,'month12':month12, 'result':result, 'year':year})
 
 
 def logoutfunk(request):
